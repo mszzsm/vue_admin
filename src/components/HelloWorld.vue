@@ -28,6 +28,7 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+  
 </template>
 
 <script>
@@ -35,6 +36,15 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  }
+}
+</script>
+
+<script>
+export default {
+  name: 'button',
+  proprs: {
+    text: String
   }
 }
 </script>
