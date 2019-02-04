@@ -1,5 +1,9 @@
 <template>
-    <h2>StartScreen</h2>
+    <div class="alert alert-secondary">
+        <h3>Are you ready</h3>
+        <button class="btn btn-success" 
+                @click="$emit('onStart')">OK</button>
+    </div>
 </template>
 <script>
 
