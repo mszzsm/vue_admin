@@ -1,7 +1,7 @@
 <template>
    <div class="alert" :class="'alert-' + type">
        <h2>{{text}}</h2>
-       <button class="btn" :class="'btn-' + type" @click="$emit('onNext')">
+       <button class="btn btn-primary" @click="$emit('onNext')">
            continue
        </button>
    </div>
