@@ -2,9 +2,18 @@
   <div class="trening">
     <h1> Trening </h1>
     <AppStartScreen v-if="state == 'start'"
-     @onStart="onStart"></AppStartScreen>
-    <AppQuestion v-else-if="state == 'question'"></AppQuestion>
-    <AppMessage v-else-if="state == 'message'"></AppMessage>
+                    @onStart="onStart">
+    </AppStartScreen>
+    <AppQuestion    v-else-if="state == 'question'"
+                    @success = "onQuestSuccess"
+                    @error = "onQuestError">
+    </AppQuestion>
+    <AppMessage v-else-if="state == 'message'"
+                :type="this.message.type"
+                :text="this.message.text"
+                @onNext = "onNext">
+
+    </AppMessage>
     <AppResults v-else-if="state == 'result'" ></AppResults>
     <div v-else class='jumbotron'>Unknown state</div>
   </div>
@@ -14,13 +23,30 @@
 export default {
   data () {
     return {
-      state: 'start'
+      state: 'start',
+      message: {
+        type: '',
+        text: ''
+      }
     }
   },
   methods: {
     onStart(){
       this.state = 'question';
-    }
+    },
+      onQuestSuccess() {
+        this.state = 'message';
+        this.message.text = "Good job!";
+        this.message.type = "success";
+    },
+      onQuestError(msg){
+        this.state = 'message';
+        this.message.text = msg;
+        this.message.type = 'warning';
+    },
+      onNext(){
+        this.state = 'question';
+      },
   }
 }
 </script>

@@ -4,7 +4,7 @@
        <hr>
        <div class="buttons">
            <button  class="btn btn-success" 
-                    v-for="number in answers" 
+                    v-for = "number in answers" 
                     @click="onAnswer(number)" >
                     {{number}}
            </button>
@@ -35,16 +35,16 @@ export default {
             }
             return res.sort(function(){
                 return Math.random() > 0.5;
-            })
+            });
         }
     },
     methods: {
         onAnswer(num){
             if(num == this.good){
-                console.log(1);
+                this.$emit('success')
             }
             else {
-                console.log(0);
+                this.$emit('error', `${this.x} + ${this.y} = ${this.good}!`)
             } 
         }
     }
