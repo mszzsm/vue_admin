@@ -1,14 +1,16 @@
 <template>
    <div class="alert alert-secondary">
-       <h3>{{ x }} + {{ y }} = {{ answers }}</h3>
+       <h3>{{ x }} + {{ y }} = ?</h3>
        <hr>
        <div class="buttons">
-           <button class="btn btn-success" v-for="(number, key, index) in answers">
-               {{number}}
+           <button  class="btn btn-success" 
+                    v-for="number in answers" 
+                    @click="onAnswer(number)" >
+                    {{number}}
            </button>
        </div>
    </div>
-</template>
+</template> 
 <script>
 
 export default {
@@ -19,12 +21,14 @@ export default {
         }
     },
     computed: {
+        good() {
+            return this.x + this.y
+        },
         answers() {
-            var good = [this.x + this.y];
-            var res  = good;
+            let res  = [this.good];
 
-            while(res.length < 10){
-                var num = mtRand(180, 220);
+            while(res.length < 4){
+                let num = mtRand(this.good - 20, this.good + 20);
                 if (res.indexOf(num) === -1){
                 res.push(num);
                 }
@@ -34,6 +38,16 @@ export default {
             })
         }
     },
+    methods: {
+        onAnswer(num){
+            if(num == this.good){
+                console.log(1);
+            }
+            else {
+                console.log(0);
+            } 
+        }
+    }
 }
 
 function mtRand(min, max) {
@@ -43,5 +57,8 @@ function mtRand(min, max) {
 </script>
 
 <style>
+.btn{
+    margin: 2rem 2rem 2rem 2rem
+}
     
 </style>
