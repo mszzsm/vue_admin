@@ -13,7 +13,8 @@
     </AppStartScreen>
     <AppQuestion    v-else-if="state == 'question'"
                     @success = "onQuestSuccess"
-                    @error = "onQuestError">
+                    @error = "onQuestError"
+                    :settings = "levels[level]">
     </AppQuestion>
     <AppMessage v-else-if="state == 'message'"
                 :type="this.message.type"
@@ -23,7 +24,8 @@
     </AppMessage>
     <AppResults v-else-if="state == 'result'" 
                 :stats="stats"
-                @repeat="onStart">
+                @repeat="onStart"
+                @nextLevel="onStart">
     </AppResults>
     <div v-else class='jumbotron'>Unknown state</div>
     </transition>
@@ -44,7 +46,28 @@ export default {
         type: '',
         text: ''
       },
-      questMax: 3
+      questMax: 3,
+
+      level: 0,
+      leves: [
+      {
+        from: 10,
+        to: 40,
+        range: 5,
+        variants: 2
+      },
+      {
+        from: 100,
+        to: 200,
+        range: 20,
+        variants: 4
+      },
+      {
+        from: 500,
+        to: 900,
+        range: 60,
+        variants: 6
+      }],
     }
   },
 
