@@ -29,7 +29,7 @@ export default {
             let res  = [this.good];
 
             while(res.length < this.settings.variants){
-                let num = mtRand(this.good - settings.range, this.good + this.settings.range);
+                let num = mtRand(this.good - this.settings.range, this.good + this.settings.range);
                 if (res.indexOf(num) === -1){
                 res.push(num);
                 }

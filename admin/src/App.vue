@@ -25,7 +25,7 @@
     <AppResults v-else-if="state == 'result'" 
                 :stats="stats"
                 @repeat="onStart"
-                @nextLevel="onStart">
+                @nextLevel="onNextLevel">
     </AppResults>
     <div v-else class='jumbotron'>Unknown state</div>
     </transition>
@@ -49,14 +49,14 @@ export default {
       questMax: 3,
 
       level: 0,
-      leves: [
+      levels: [
       {
         from: 10,
         to: 40,
         range: 5,
         variants: 2
       },
-      {
+      { 
         from: 100,
         to: 200,
         range: 20,
@@ -106,6 +106,11 @@ export default {
         this.state = 'question';
         } else { this.state = 'result'};
       },
+
+      onNextLevel(){
+        this.level++
+        this.onStart()
+      }
   }
 }
 </script>
